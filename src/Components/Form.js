@@ -31,6 +31,7 @@ export default function Form(props) {
     var newText = document.getElementById("Form");
     newText.select();
     navigator.clipboard.writeText(newText.value);
+    document.getSelection().removeAllRanges();
     props.showAlert("Text Copied!!!", "success");
     // setText(event.target.value);
   };
@@ -60,26 +61,26 @@ export default function Form(props) {
             value={text}
             onChange={handleOnChange}
             style={{
-              backgroundColor: props.mode === "dark" ? "grey" : "white",
+              backgroundColor: props.mode === "dark" ? "#426668" : "white",
               color: props.mode === "light" ? "#212934" : "white",
             }}
             id="Form"
             rows="5"
           ></textarea>
 
-          <button className="btn btn-primary mx-2" onClick={handleUpClick}>
+        <button disabled={text.length===0} className="btn btn-primary mx-1 my-1" onClick={handleUpClick}>
             Convert to Upper Case
           </button>
-          <button className="btn btn-primary mx-2" onClick={handleLoClick}>
+          <button disabled={text.length===0} className="btn btn-primary mx-1 my-1" onClick={handleLoClick}>
             Convert to Lower Case
           </button>
-          <button className="btn btn-primary mx-2" onClick={handleClearClick}>
+          <button disabled={text.length===0} className="btn btn-primary mx-1 my-1" onClick={handleClearClick}>
             Clear Text
           </button>
-          <button className="btn btn-primary mx-2" onClick={handleCopyClick}>
+          <button disabled={text.length===0} className="btn btn-primary mx-1 my-1" onClick={handleCopyClick}>
             Copy Text
           </button>
-          <button className="btn btn-primary mx-2" onClick={handleWSClick}>
+          <button disabled={text.length===0} className="btn btn-primary mx-1 my-1" onClick={handleWSClick}>
             Clear White Space
           </button>
         </div>
@@ -91,12 +92,12 @@ export default function Form(props) {
         >
           <h2>Your Paragraph summary</h2>
           <p>
-            There are {text.split(" ").length} words and {text.length} letters
+            There are {text.split(" ").filter((element)=>{return element.length!==0}).length} words and {text.split("").length} letters
             in your paragraph.
           </p>
           <p>
             {/* // As 1 word takes .008 min */}
-            {0.008 * text.split(" ").length} minutes required to read this
+            {0.008 * text.split(" ").filter((element)=>{return element.length!==0}).length} minutes required to read this
             paragraph.
           </p>
           <h2>Preview</h2>
