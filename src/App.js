@@ -2,14 +2,13 @@ import "./App.css";
 import Navbar from "./Components/Navbar";
 import Alert from "./Components/Alert";
 import Form from "./Components/Form";
-// import About from "./Components/About";
+import About from "./Components/About";
 import React, { useState } from "react";
 
-// import {
-//   BrowserRouter as Router,
-//   Route,
-//   Link,
-//   Switch} from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch} from "react-router-dom";
 
 function App() {
   const [mode, setMode] = useState("light");
@@ -39,7 +38,7 @@ function App() {
 
   return (
     <>
-    {/* <Router> */}
+    <Router>
       <Navbar
         title="Text Utils"
         mode={mode}
@@ -49,16 +48,16 @@ function App() {
       {/* <Navbar /> */}
 
       <div className="container my-3">
-      {/* <Switch>
+      <Switch>
           <Route exact path="/about">
             <About/>
           </Route>
-          <Route exact path="/"> */}
+          <Route exact path="/">
           <Form showAlert={showAlert} heading="Play with your words" mode={mode} />
-          {/* </Route>
-        </Switch> */}
+          </Route>
+        </Switch>
       </div>
-      {/* </Router> */}
+      </Router>
     </>
   );
 }
